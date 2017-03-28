@@ -41,6 +41,16 @@ func main() {
 		extranumber := c.Param("extranumber")
 		_, stringNumber := computeMathAny(number)
 		_, stringNumber2 := computeMathAny2(extranumber)
+		c.Writer.Header().Set("X-Powered-By", "Express")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Connection", "keep-alive")
+		//c.Writer.Header().Set("Content-Encoding", "gzip") // Doesn't work
+		c.Writer.Header().Set("Pragma", "no-cache")
+		c.Writer.Header().Set("Server", "cloudflare-nginx")
+		c.Writer.Header().Set("Transfer-Encoding", "chunked")
+		c.Writer.Header().Set("Vary", "Accept-Encoding")
+		c.Writer.Header().Set("Via", "1.1 vegur")
+		c.Writer.Header().Set("X-Content-Type-Options", "nosniff")
 		c.JSON(http.StatusOK, gin.H{
 			"message":   "my JSON + number message",
 			"status":    http.StatusOK,
